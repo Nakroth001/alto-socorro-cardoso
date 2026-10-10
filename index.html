@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101112">
+<meta name="description" content="Auto Socorro Cardoso. Precisa de ajuda com seu veículo? Entre em contato e compartilhe sua localização.">
+<title>Auto Socorro Cardoso | SOS Automotivo</title>
+
+<style>
+:root {
+  --bg: #101112;
+  --panel: #191b1d;
+  --yellow: #ffd21f;
+  --white: #ffffff;
+  --muted: #a7abb0;
+  --green: #25d366;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+.container { width: min(1100px, 90%); margin: auto; }
+
+header {
+  padding: 20px 0;
+  border-bottom: 1px solid #292b2e;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+.logo {
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: -.4px;
+}
+.logo span { color: var(--yellow); }
+.logo small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+}
+.header-call {
+  background: var(--yellow);
+  color: #111;
+  padding: 11px 15px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.hero { padding: 55px 0 35px; }
+.tag {
+  color: var(--yellow);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+h1 {
+  font-size: clamp(38px, 7vw, 70px);
+  line-height: 1.02;
+  letter-spacing: -2px;
+  margin: 17px 0;
+  max-width: 720px;
+}
+h1 span { color: var(--yellow); }
+.hero p { color: var(--muted); max-width: 500px; font-size: 16px; }
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 35px;
+  align-items: center;
+}
+.sos-card {
+  background: linear-gradient(145deg, #222426, #171819);
+  border: 1px solid #343638;
+  padding: 24px;
+  border-radius: 22px;
+  box-shadow: 0 20px 60px #0005;
+}
+.status { color: #b7f7c8; font-size: 12px; margin-bottom: 16px; }
+.status i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  margin-right: 7px;
+}
+.sos-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 100px;
+  background: var(--yellow);
+  color: #111;
+  border: 0;
+  border-radius: 16px;
+  font-size: 30px;
+  font-weight: 1000;
+  box-shadow: 0 6px 0 #bd9410;
+  transition: transform .15s;
+}
+.sos-button:active { transform: translateY(4px); box-shadow: none; }
+.sos-button small { display: block; font-size: 11px; font-weight: 800; }
+.sos-icon { font-size: 35px; }
+
+.location-button, .call-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 13px;
+  border-radius: 12px;
+  font-weight: bold;
+  gap: 8px;
+}
+.location-button {
+  background: #292b2e;
+  border: 1px solid #44474a;
+  color: white;
+}
+.call-button { background: var(--green); color: #082d17; }
+.location-note {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 14px;
+  text-align: center;
+}
+
+.section { padding: 45px 0; }
+.section h2 { font-size: 29px; margin-bottom: 8px; letter-spacing: -.7px; }
+.subtitle { color: var(--muted); margin-bottom: 23px; }
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.service {
+  text-align: left;
+  background: var(--panel);
+  color: white;
+  border: 1px solid #2d2f31;
+  padding: 21px;
+  border-radius: 15px;
+  transition: border-color .2s, transform .2s;
+}
+.service:hover {
+  border-color: var(--yellow);
+  transform: translateY(-3px);
+}
+.service .emoji { font-size: 28px; }
+.service h3 { font-size: 16px; margin: 12px 0 5px; }
+.service p { color: var(--muted); font-size: 13px; }
+
+.how {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.step { padding: 18px 0; border-top: 2px solid var(--yellow); }
+.step b { font-size: 15px; }
+.step p { color: var(--muted); font-size: 13px; margin-top: 5px; }
+
+.bottom-cta {
+  background: var(--yellow);
+  color: #111;
+  border-radius: 20px;
+  padding: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.bottom-cta h2 { font-size: 24px; }
+.bottom-cta p { font-size: 13px; }
+.bottom-cta a {
+  flex-shrink: 0;
+  background: #111;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 28px 0 90px;
+}
+.mobile-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 5%;
+  background: #101112f5;
+  border-top: 1px solid #333;
+  z-index: 10;
+}
+.mobile-bar a {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  border-radius: 10px;
+  background: var(--yellow);
+  color: #111;
+  font-weight: 900;
+}
+
+@media(max-width: 760px) {
+  .hero { padding-top: 38px; }
+  .hero-layout { grid-template-columns: 1fr; gap: 25px; }
+  h1 { font-size: 48px; }
+  .sos-card { padding: 18px; }
+  .services { grid-template-columns: repeat(2, 1fr); }
+  .how { grid-template-columns: 1fr; gap: 5px; }
+  .bottom-cta { align-items: stretch; flex-direction: column; }
+  .bottom-cta a { text-align: center; }
+  .mobile-bar { display: block; }
+  footer { padding-bottom: 95px; }
+}
+@media(max-width: 380px) {
+  h1 { font-size: 40px; }
+  .services { grid-template-columns: 1fr; }
+  .header-call { font-size: 11px; }
+  .logo { font-size: 14px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#">
+      <span>✦ SOS</span> AUTO SOCORRO CARDOSO
+      <small>AJUDA QUANDO VOCÊ PRECISA</small>
+    </a>
+    <a class="header-call" href="#socorro">PRECISO DE AJUDA ↗</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-layout">
+      <div>
+        <div class="tag">● Auto Socorro Cardoso</div>
+        <h1>Deu problema?<br><span>Chama o Cardoso.</span></h1>
+        <p>Seu veículo te deixou na mão? Entre em contato, informe onde você está e conte o que aconteceu. Vamos conversar para encontrar a melhor forma de ajudar.</p>
+      </div>
+
+      <div class="sos-card" id="socorro">
+        <div class="status"><i></i> Contato direto, sem cadastro</div>
+
+        <button class="sos-button" onclick="acionarSOS()">
+          <span class="sos-icon">🆘</span>
+          <span>SOS<small>PRECISO DE SOCORRO</small></span>
+        </button>
+
+        <button class="location-button" onclick="enviarLocalizacao()">
+          📍 ENVIAR MINHA LOCALIZAÇÃO
+        </button>
+
+        <a class="call-button" href="#" onclick="return abrirWhatsApp(event)">
+          ☎ CHAMAR PELO WHATSAPP
+        </a>
+
+        <div class="location-note" id="locationStatus">
+          Sua localização só será acessada com sua autorização.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Como podemos ajudar?</h2>
+      <p class="subtitle">Selecione o que aconteceu com seu veículo.</p>
+
+      <div class="services">
+        <button class="service" onclick="selecionarProblema('Guincho / transporte do veículo')">
+          <div class="emoji">🚛</div>
+          <h3>Guincho</h3>
+          <p>Precisa transportar seu veículo?</p>
+        </button>
+
+        <button class="service" onclick="selecionarProblema('Pane mecânica')">
+          <div class="emoji">🛠️</div>
+          <h3>Pane mecânica</h3>
+          <p>O carro parou de funcionar?</p>
+        </button>
+
+        <button class="service" onclick="selecionarProblema('Bateria / partida')">
+          <div class="emoji">🔋</div>
+          <h3>Bateria</h3>
+          <p>O veículo não dá partida?</p>
+        </button>
+
+        <button class="service" onclick="selecionarProblema('Pneu furado')">
+          <div class="emoji">🛞</div>
+          <h3>Pneu furado</h3>
+          <p>Precisa de ajuda com o pneu?</p>
+        </button>
+
+        <button class="service" onclick="selecionarProblema('Pane elétrica')">
+          <div class="emoji">⚡</div>
+          <h3>Pane elétrica</h3>
+          <p>Problemas elétricos no veículo?</p>
+        </button>
+
+        <button class="service" onclick="selecionarProblema('Outro problema')">
+          <div class="emoji">💬</div>
+          <h3>Outro problema</h3>
+          <p>Conte o que está acontecendo.</p>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>É simples pedir ajuda.</h2>
+      <p class="subtitle">Sem cadastro, sem complicação.</p>
+
+      <div class="how">
+        <div class="step">
+          <b>01. Toque no SOS</b>
+          <p>Escolha chamar pelo WhatsApp ou compartilhar sua localização.</p>
+        </div>
+        <div class="step">
+          <b>02. Informe o problema</b>
+          <p>Conte o que aconteceu e qual veículo precisa de assistência.</p>
+        </div>
+        <div class="step">
+          <b>03. Combine o atendimento</b>
+          <p>Confirme disponibilidade, preço e previsão diretamente com o profissional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container bottom-cta">
+      <div>
+        <h2>Precisou? Chame o Cardoso.</h2>
+        <p>Fale diretamente com o Auto Socorro Cardoso.</p>
+      </div>
+      <a href="#" onclick="return abrirWhatsApp(event)">CHAMAR SOCORRO ↗</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    Auto Socorro Cardoso · Atendimento sujeito à disponibilidade.<br>
+    Confirme valores, área atendida e previsão diretamente com o profissional.
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a href="#" onclick="return abrirWhatsApp(event)">🆘 PRECISO DE SOCORRO AGORA</a>
+</div>
+
+<script>
+// CONFIGURAÇÃO: coloque o número do Cardoso com DDI + DDD + telefone.
+// Exemplo de formato: "5533999999999" (substitua pelo número real).
+const TELEFONE = "COLOQUEONUMEROAQUI";
+
+let problema = "Preciso de auto socorro";
+let localizacao = "";
+
+function telefoneConfigurado() {
+  if (!/^\d{12,13}$/.test(TELEFONE)) {
+    alert("O WhatsApp do Auto Socorro Cardoso ainda precisa ser configurado.");
+    return false;
+  }
+  return true;
+}
+
+function montarMensagem() {
+  return `${problema}\n${
+    localizacao
+      ? "Minha localização: " + localizacao + "\n"
+      : ""
+  }Por favor, confirme se pode me atender, o valor e a previsão de chegada.`;
+}
+
+function abrirWhatsApp(event) {
+  if (event) event.preventDefault();
+  if (!telefoneConfigurado()) return false;
+
+  const url = "https://wa.me/" + TELEFONE +
+    "?text=" + encodeURIComponent(montarMensagem());
+
+  window.location.href = url;
+  return false;
+}
+
+function acionarSOS() {
+  problema = "🆘 SOS - Preciso de auto socorro!";
+
+  if (localizacao) {
+    abrirWhatsApp();
+    return;
+  }
+
+  if (confirm("Deseja compartilhar sua localização para facilitar o atendimento?")) {
+    enviarLocalizacao();
+  } else {
+    abrirWhatsApp();
+  }
+}
+
+function enviarLocalizacao() {
+  const status = document.getElementById("locationStatus");
+
+  if (!navigator.geolocation) {
+    status.textContent = "Não foi possível acessar a localização neste navegador.";
+    if (confirm("Deseja continuar pelo WhatsApp e informar seu endereço?")) {
+      abrirWhatsApp();
+    }
+    return;
+  }
+
+  status.textContent = "Solicitando sua localização...";
+
+  navigator.geolocation.getCurrentPosition(
+    function(posicao) {
+      const lat = posicao.coords.latitude;
+      const lon = posicao.coords.longitude;
+
+      localizacao = `https://www.google.com/maps?q=${lat},${lon}`;
+      status.textContent = "Localização pronta para enviar pelo WhatsApp.";
+      abrirWhatsApp();
+    },
+    function() {
+      status.textContent = "Não foi possível obter sua localização.";
+      if (confirm("Você pode informar o endereço manualmente. Deseja abrir o WhatsApp?")) {
+        abrirWhatsApp();
+      }
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 12000,
+      maximumAge: 0
+    }
+  );
+}
+
+function selecionarProblema(nome) {
+  problema = nome;
+  abrirWhatsApp();
+}
+</script>
+</body>
+</html>
